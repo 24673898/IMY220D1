@@ -47,8 +47,17 @@ const App = () => {
                     } 
                 />
                 
+                {/* Profile routes - separate for optional parameter */}
                 <Route 
-                    path="/profile/:id?" 
+                    path="/profile" 
+                    element={
+                        <ProtectedRoute>
+                            <ProfilePage />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/profile/:id" 
                     element={
                         <ProtectedRoute>
                             <ProfilePage />

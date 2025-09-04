@@ -3916,12 +3916,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Header */ "./frontend/src/components/Header.js");
-/* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Profile */ "./frontend/src/components/Profile.js");
-/* harmony import */ var _components_EditProfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/EditProfile */ "./frontend/src/components/EditProfile.js");
-/* harmony import */ var _components_ProjectList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ProjectList */ "./frontend/src/components/ProjectList.js");
-/* harmony import */ var _components_CreateProject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/CreateProject */ "./frontend/src/components/CreateProject.js");
-/* harmony import */ var _ProfilePage_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ProfilePage.css */ "./frontend/src/pages/ProfilePage.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./frontend/src/components/Header.js");
+/* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Profile */ "./frontend/src/components/Profile.js");
+/* harmony import */ var _components_EditProfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/EditProfile */ "./frontend/src/components/EditProfile.js");
+/* harmony import */ var _components_ProjectList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ProjectList */ "./frontend/src/components/ProjectList.js");
+/* harmony import */ var _components_CreateProject__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/CreateProject */ "./frontend/src/components/CreateProject.js");
+/* harmony import */ var _ProfilePage_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProfilePage.css */ "./frontend/src/pages/ProfilePage.css");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -3935,7 +3942,11 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 var ProfilePage = function ProfilePage() {
+  var _currentUser$id;
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)(),
+    id = _useParams.id;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     isEditing = _useState2[0],
@@ -3945,8 +3956,26 @@ var ProfilePage = function ProfilePage() {
     showCreateProject = _useState4[0],
     setShowCreateProject = _useState4[1];
 
-  // Dummy user data
-  var userData = {
+  // Get current user from localStorage
+  var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  var isOwnProfile = !id || id === ((_currentUser$id = currentUser.id) === null || _currentUser$id === void 0 ? void 0 : _currentUser$id.toString());
+
+  // Dummy user data for other profiles
+  var otherUserData = {
+    id: parseInt(id) || 1,
+    firstName: "Jane",
+    lastName: "Smith",
+    email: "jane@example.com",
+    username: "janedev",
+    bio: "Frontend developer specializing in React and modern web technologies",
+    location: "New York, NY",
+    website: "https://janesmith.dev",
+    joinDate: "March 2024",
+    profileImage: "/assets/images/jane-avatar.png"
+  };
+
+  // Default user data for own profile
+  var defaultUserData = {
     id: 1,
     firstName: "Frank",
     lastName: "Johnson",
@@ -3958,13 +3987,21 @@ var ProfilePage = function ProfilePage() {
     joinDate: "January 2024",
     profileImage: "/assets/images/frank-avatar.png"
   };
+
+  // Use current user data if available, otherwise use default
+  var ownProfileData = Object.keys(currentUser).length > 0 ? _objectSpread(_objectSpread(_objectSpread({}, defaultUserData), currentUser), {}, {
+    profileImage: currentUser.profileImage || defaultUserData.profileImage
+  }) : defaultUserData;
+
+  // Determine which user data to display
+  var userData = isOwnProfile ? ownProfileData : otherUserData;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "profile-page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "profile-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "profile-main"
-  }, isEditing ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_EditProfile__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, isEditing && isOwnProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_EditProfile__WEBPACK_IMPORTED_MODULE_4__["default"], {
     user: userData,
     onCancel: function onCancel() {
       return setIsEditing(false);
@@ -3972,23 +4009,25 @@ var ProfilePage = function ProfilePage() {
     onSave: function onSave() {
       return setIsEditing(false);
     }
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: userData,
-    onEdit: function onEdit() {
+    onEdit: isOwnProfile ? function () {
       return setIsEditing(true);
-    }
-  }), showCreateProject ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_CreateProject__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    } : undefined,
+    isOwnProfile: isOwnProfile
+  }), showCreateProject && isOwnProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_CreateProject__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onCancel: function onCancel() {
       return setShowCreateProject(false);
     },
     onSave: function onSave() {
       return setShowCreateProject(false);
     }
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ProjectList__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_ProjectList__WEBPACK_IMPORTED_MODULE_5__["default"], {
     userId: userData.id,
-    onCreateProject: function onCreateProject() {
+    onCreateProject: isOwnProfile ? function () {
       return setShowCreateProject(true);
-    }
+    } : undefined,
+    isOwnProfile: isOwnProfile
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfilePage);
@@ -50886,7 +50925,10 @@ var App = function App() {
     path: "/home",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ProtectedRoute, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages_HomePage__WEBPACK_IMPORTED_MODULE_5__["default"], null))
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, {
-    path: "/profile/:id?",
+    path: "/profile",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ProtectedRoute, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages_ProfilePage__WEBPACK_IMPORTED_MODULE_6__["default"], null))
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, {
+    path: "/profile/:id",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ProtectedRoute, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages_ProfilePage__WEBPACK_IMPORTED_MODULE_6__["default"], null))
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, {
     path: "/project/:id",

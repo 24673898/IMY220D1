@@ -1,0 +1,356 @@
+/* Project.css */
+.project-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.project-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.project-image-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.project-image {
+    width: 200px;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e1e5e9;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f2ff 0%, #e8ebff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #667eea;
+}
+
+.project-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.action-btn {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.checkout-btn.available {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.checkout-btn.available:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.checkout-btn.disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.download-btn {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.download-btn:hover {
+    background: rgba(34, 197, 94, 0.15);
+    transform: translateY(-1px);
+}
+
+.star-btn {
+    background: rgba(251, 146, 60, 0.1);
+    color: #ea580c;
+    border: 1px solid rgba(251, 146, 60, 0.2);
+}
+
+.star-btn:hover {
+    background: rgba(251, 146, 60, 0.15);
+    transform: translateY(-1px);
+}
+
+.project-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.project-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.project-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.edit-project-btn {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.edit-project-btn:hover {
+    background: rgba(102, 126, 234, 0.15);
+    transform: translateY(-1px);
+}
+
+.project-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.project-owner {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.project-owner strong {
+    color: #667eea;
+}
+
+.project-status {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-status.checked-in {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+}
+
+.project-status.checked-out {
+    background: rgba(251, 146, 60, 0.1);
+    color: #ea580c;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 1.5rem 0;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.project-tag {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.project-tag:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-1px);
+}
+
+.project-stats {
+    display: flex;
+    gap: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e1e5e9;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.stat-item svg {
+    color: #667eea;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .project-card {
+        padding: 1.5rem;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .project-image-section {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .project-image {
+        width: 120px;
+        height: 80px;
+    }
+    
+    .project-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .project-title {
+        font-size: 1.5rem;
+    }
+    
+    .project-details {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem;
+    }
+    
+    .project-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .project-card {
+        padding: 1rem;
+    }
+    
+    .project-image-section {
+        flex-direction: column;
+    }
+    
+    .project-image {
+        width: 100%;
+        height: 120px;
+    }
+    
+    .project-title-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .project-meta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .project-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-stats {
+        gap: 0.75rem;
+    }
+    
+    .stat-item {
+        justify-content: space-between;
+    }
+}

@@ -18,13 +18,8 @@ const SplashPage = () => {
                     <div className="branding">
                         <div className="logo">
                             <div className="logo-icon">
-                                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                                    <rect x="5" y="5" width="50" height="50" rx="8" stroke="white" strokeWidth="2" fill="none"/>
-                                    <path d="M15 20h30v25H15z" stroke="white" strokeWidth="2" fill="none"/>
-                                    <path d="M20 25h20M20 30h15M20 35h25" stroke="white" strokeWidth="1.5"/>
-                                    <text x="30" y="18" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">F</text>
-                                </svg>
-                            </div>
+                            <img src="/assets/images/logo.png" alt="Logo" width="60" height="60" />
+                        </div>
                             <h1 className="site-title">FrankCodeHub</h1>
                         </div>
                         

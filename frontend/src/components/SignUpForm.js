@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUpForm.css';
 
 const SignUpForm = ({ onToggleForm }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -10,6 +12,7 @@ const SignUpForm = ({ onToggleForm }) => {
         confirmPassword: ''
     });
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -60,13 +63,49 @@ const SignUpForm = ({ onToggleForm }) => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (validateForm()) {
-            // TODO: Connect to backend API in Part 5
-            console.log('SignUp submitted:', formData);
-            alert('Sign up form submitted! (This will connect to backend in Part 5)');
+        if (!validateForm()) {
+            return;
+        }
+
+        setIsLoading(true);
+        
+        try {
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    password: formData.password
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Store user data in localStorage
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                
+                // Redirect to home page
+                navigate('/home');
+            } else {
+                setErrors({
+                    form: data.message || 'Signup failed'
+                });
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            setErrors({
+                form: 'Network error. Please try again.'
+            });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -76,6 +115,12 @@ const SignUpForm = ({ onToggleForm }) => {
             <p className="form-subtitle">Create your account to get started</p>
             
             <form onSubmit={handleSubmit}>
+                {errors.form && (
+                    <div className="form-error">
+                        {errors.form}
+                    </div>
+                )}
+                
                 <div className="form-row">
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
@@ -87,6 +132,7 @@ const SignUpForm = ({ onToggleForm }) => {
                             value={formData.firstName}
                             onChange={handleInputChange}
                             className={errors.firstName ? 'error' : ''}
+                            disabled={isLoading}
                         />
                         {errors.firstName && <span className="error-message">{errors.firstName}</span>}
                     </div>
@@ -101,6 +147,7 @@ const SignUpForm = ({ onToggleForm }) => {
                             value={formData.lastName}
                             onChange={handleInputChange}
                             className={errors.lastName ? 'error' : ''}
+                            disabled={isLoading}
                         />
                         {errors.lastName && <span className="error-message">{errors.lastName}</span>}
                     </div>
@@ -116,6 +163,7 @@ const SignUpForm = ({ onToggleForm }) => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={errors.email ? 'error' : ''}
+                        disabled={isLoading}
                     />
                     {errors.email && <span className="error-message">{errors.email}</span>}
                 </div>
@@ -130,6 +178,7 @@ const SignUpForm = ({ onToggleForm }) => {
                         value={formData.password}
                         onChange={handleInputChange}
                         className={errors.password ? 'error' : ''}
+                        disabled={isLoading}
                     />
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
@@ -144,12 +193,13 @@ const SignUpForm = ({ onToggleForm }) => {
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
                         className={errors.confirmPassword ? 'error' : ''}
+                        disabled={isLoading}
                     />
                     {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
                 </div>
                 
-                <button type="submit" className="submit-btn">
-                    Create Account
+                <button type="submit" className="submit-btn" disabled={isLoading}>
+                    {isLoading ? 'Creating Account...' : 'Create Account'}
                 </button>
             </form>
             

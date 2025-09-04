@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm = ({ onToggleForm }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -43,13 +46,44 @@ const LoginForm = ({ onToggleForm }) => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (validateForm()) {
-            // TODO: Connect to backend API in Part 5
-            console.log('Login submitted:', formData);
-            alert('Login form submitted! (This will connect to backend in Part 5)');
+        if (!validateForm()) {
+            return;
+        }
+
+        setIsLoading(true);
+        
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Store user data in localStorage
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                
+                // Redirect to home page
+                navigate('/home');
+            } else {
+                setErrors({
+                    form: data.message || 'Login failed'
+                });
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            setErrors({
+                form: 'Network error. Please try again.'
+            });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -59,6 +93,12 @@ const LoginForm = ({ onToggleForm }) => {
             <p className="form-subtitle">Sign in to your account to continue</p>
             
             <form onSubmit={handleSubmit}>
+                {errors.form && (
+                    <div className="form-error">
+                        {errors.form}
+                    </div>
+                )}
+                
                 <div className="form-group">
                     <label htmlFor="email">Email Address</label>
                     <input
@@ -69,6 +109,7 @@ const LoginForm = ({ onToggleForm }) => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={errors.email ? 'error' : ''}
+                        disabled={isLoading}
                     />
                     {errors.email && <span className="error-message">{errors.email}</span>}
                 </div>
@@ -83,12 +124,13 @@ const LoginForm = ({ onToggleForm }) => {
                         value={formData.password}
                         onChange={handleInputChange}
                         className={errors.password ? 'error' : ''}
+                        disabled={isLoading}
                     />
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
                 
-                <button type="submit" className="submit-btn">
-                    Sign In
+                <button type="submit" className="submit-btn" disabled={isLoading}>
+                    {isLoading ? 'Signing In...' : 'Sign In'}
                 </button>
             </form>
             

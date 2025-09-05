@@ -12,23 +12,8 @@ const ProfilePage = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [showCreateProject, setShowCreateProject] = useState(false);
 
-    // Get current user from localStorage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    const isOwnProfile = !id || id === currentUser.id?.toString();
-
-    // Dummy user data for other profiles
-    const otherUserData = {
-        id: parseInt(id) || 1,
-        firstName: "Jane",
-        lastName: "Smith",
-        email: "jane@example.com",
-        username: "janedev",
-        bio: "Frontend developer specializing in React and modern web technologies",
-        location: "New York, NY",
-        website: "https://janesmith.dev",
-        joinDate: "March 2024",
-        profileImage: "/assets/images/jane-avatar.png"
-    };
+    // Determine if viewing own profile (no ID = own profile)
+    const isOwnProfile = !id;
 
     // Default user data for own profile
     const defaultUserData = {
@@ -44,15 +29,22 @@ const ProfilePage = () => {
         profileImage: "/assets/images/frank-avatar.png"
     };
 
-    // Use current user data if available, otherwise use default
-    const ownProfileData = Object.keys(currentUser).length > 0 ? {
-        ...defaultUserData,
-        ...currentUser,
-        profileImage: currentUser.profileImage || defaultUserData.profileImage
-    } : defaultUserData;
+    // Dummy user data for other profiles
+    const otherUserData = {
+        id: parseInt(id) || 2,
+        firstName: "Jane",
+        lastName: "Smith",
+        email: "jane@example.com",
+        username: "janedev",
+        bio: "Frontend developer specializing in React and modern web technologies",
+        location: "New York, NY",
+        website: "https://janesmith.dev",
+        joinDate: "March 2024",
+        profileImage: "/assets/images/jane-avatar.png"
+    };
 
-    // Determine which user data to display
-    const userData = isOwnProfile ? ownProfileData : otherUserData;
+    // Use appropriate user data
+    const userData = isOwnProfile ? defaultUserData : otherUserData;
 
     return (
         <div className="profile-page">

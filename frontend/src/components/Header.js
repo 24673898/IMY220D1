@@ -1,18 +1,9 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SearchInput from './SearchInput';
 import './Header.css';
 
 const Header = () => {
-    const navigate = useNavigate();
-    
-    const handleLogout = () => {
-        // Remove user data from localStorage
-        localStorage.removeItem('currentUser');
-        // Redirect to splash page
-        navigate('/');
-    };
-
     return (
         <header className="header">
             <div className="header-container">
@@ -30,7 +21,7 @@ const Header = () => {
                     <Link to="/projects" className="nav-link">Projects</Link>
                     <SearchInput />
                     <Link to="/profile" className="nav-link">Profile</Link>
-                    <button className="logout-btn" onClick={handleLogout}>Logout</button>
+                    <Link to="/" className="nav-link">Exit</Link>
                 </nav>
             </div>
         </header>

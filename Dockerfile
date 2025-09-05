@@ -22,4 +22,4 @@ ENV PORT=1337
 EXPOSE 1337
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "backend/dist/server.js"]

@@ -1,0 +1,222 @@
+/* ProjectPage.css */
+.project-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    font-family: 'Inter', sans-serif;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-tabs {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.tab-nav {
+    display: flex;
+    border-bottom: 1px solid #e1e5e9;
+    background: #f8f9fa;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 1rem 2rem;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(102, 126, 234, 0.05);
+    color: #333;
+}
+
+.tab-btn.active {
+    background: white;
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+.tab-content {
+    padding: 2rem;
+}
+
+.overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: rgba(102, 126, 234, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.stat-card h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+    display: block;
+}
+
+.collaborators-section h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 1rem 0;
+}
+
+.collaborators-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.collaborator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e1e5e9;
+    transition: all 0.2s ease;
+}
+
+.collaborator:hover {
+    background: rgba(102, 126, 234, 0.05);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.collaborator.owner {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.2);
+}
+
+.collaborator-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.collaborator.owner .collaborator-avatar {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.collaborator-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.collaborator-name {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+}
+
+.collaborator-role {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.collaborator.owner .collaborator-role {
+    color: #d97706;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .project-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .tab-nav {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        text-align: left;
+        border-bottom: none;
+        border-right: 3px solid transparent;
+    }
+    
+    .tab-btn.active {
+        border-right-color: #667eea;
+        border-bottom-color: transparent;
+    }
+    
+    .project-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .project-container {
+        padding: 0.5rem;
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+    
+    .project-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .collaborators-list {
+        grid-template-columns: 1fr;
+    }
+}

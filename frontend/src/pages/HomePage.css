@@ -1,0 +1,54 @@
+/* HomePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.homepage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    font-family: 'Inter', sans-serif;
+}
+
+.homepage-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+}
+
+.homepage-main {
+    flex: 2;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+}
+
+.homepage-sidebar {
+    flex: 1;
+    max-width: 300px;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .homepage-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .homepage-sidebar {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .homepage-container {
+        padding: 0.5rem;
+    }
+    
+    .homepage-main {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+}

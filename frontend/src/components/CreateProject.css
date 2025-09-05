@@ -1,0 +1,265 @@
+/* CreateProject.css */
+.create-project-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.create-project-header {
+    margin-bottom: 2rem;
+}
+
+.create-project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+}
+
+.create-project-subtitle {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.create-project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1.5px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    background: #fafbfc;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input.error,
+.form-group textarea.error,
+.form-group select.error {
+    border-color: #e74c3c;
+    background: #fdf2f2;
+}
+
+.form-group input.error:focus,
+.form-group textarea.error:focus,
+.form-group select.error:focus {
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.char-count,
+.input-help {
+    display: block;
+    text-align: right;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.input-help {
+    text-align: left;
+}
+
+.file-upload-section {
+    margin: 1rem 0;
+}
+
+.file-upload-label {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.file-upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.file-upload-area:hover {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.02);
+}
+
+.file-upload-content {
+    color: #666;
+}
+
+.file-upload-content svg {
+    color: #d1d5db;
+    margin-bottom: 1rem;
+}
+
+.file-upload-content p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.file-upload-content small {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.browse-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.browse-btn:hover {
+    color: #764ba2;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e1e5e9;
+}
+
+.cancel-btn,
+.create-btn {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.cancel-btn {
+    background: white;
+    color: #666;
+    border: 1.5px solid #e1e5e9;
+}
+
+.cancel-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.create-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+}
+
+.create-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.create-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .create-project-card {
+        padding: 1.5rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .file-upload-area {
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .cancel-btn,
+    .create-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .create-project-card {
+        padding: 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.75rem;
+    }
+    
+    .file-upload-area {
+        padding: 1rem;
+    }
+}
